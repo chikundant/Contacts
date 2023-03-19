@@ -5,8 +5,8 @@ from sqlalchemy.orm import declarative_base
 Base = declarative_base()
 
 
-class User(UserMixin, Base):
-    __tablename__ = 'user'
+class Contact(UserMixin, Base):
+    __tablename__ = 'contacts'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50))

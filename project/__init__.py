@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import os
 from config import DB_URI
-from project.models import Base, User
+from project.models import Base, Contact
 
 from project.routes.main import main as main_blueprint
 
