@@ -6,11 +6,11 @@ from config import DB_URI
 from project.models import Base, Contact
 
 from project.routes.main import main as main_blueprint
-
+from project.routes.contacts import contacts as contacts_blueprint
 
 engine = create_engine(DB_URI, echo=True)
 Session = sessionmaker(bind=engine)
-Session = Session()
+session = Session()
 
 
 app = Flask(__name__)
@@ -20,6 +20,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = engine
 Base.metadata.create_all(engine)
 
 app.register_blueprint(main_blueprint)
+app.register_blueprint(contacts_blueprint)
 
 
-from project.routes import main
+from project.routes import *

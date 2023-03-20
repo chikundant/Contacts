@@ -1,0 +1,19 @@
+<script src="/static/js/tools.js"></script>
+<aside class="w-1/3 bg-gray-600 h-screen flex flex-col p-8 select-none">
+    <ul class="">
+        <li class="">
+            <h1 class="contact text-2xl contacs w-full container flex w-full bg-gray-700 p-6 rounded-3xl mb-8 shadow-lg cursor-pointer hover:bg-gray-800 ">Сontacts</h1>
+            <ul class="contacs_menu w-full hidden">
+                <li class="mb-8 ml-6"><a href="{{url_for('contacts.add_contact')}}" class="shadow-lg bg-gray-700 block p-4 rounded-3xl hover:bg-gray-800" >Explore</a></li>
+                <li class="mb-8 ml-6"><a href="{{url_for('contacts.add_contact')}}" class="shadow-lg bg-gray-700 block p-4 rounded-3xl hover:bg-gray-800" >Find</a></li>
+            </ul>
+        </li>
+        <li class="">
+            <h1 class="text-2xl contacs w-full container flex w-full bg-gray-700 p-6 rounded-3xl mb-8 shadow-lg cursor-pointer hover:bg-gray-800 ">Tool 2</h1>
+            <ul class="w-full hidden">
+                <li class="mb-8 ml-6"><a href="{{url_for('contacts.add_contact')}}" class="shadow-lg bg-gray-700 block p-4 rounded-3xl hover:bg-gray-800" >Explore</a></li>
+                <li class="mb-8 ml-6"><a href="{{url_for('contacts.add_contact')}}" class="shadow-lg bg-gray-700 block p-4 rounded-3xl hover:bg-gray-800" >Add</a></li>
+            </ul>
+        </li>
+    </ul>
+</aside>
