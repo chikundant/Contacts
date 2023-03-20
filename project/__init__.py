@@ -1,26 +1,20 @@
 from flask import Flask
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from flask_sqlalchemy import SQLAlchemy
 import os
+
 from config import DB_URI
-from project.models import Base, Contact
 
-from project.routes.main import main as main_blueprint
-from project.routes.contacts import contacts as contacts_blueprint
 
-engine = create_engine(DB_URI, echo=True)
-Session = sessionmaker(bind=engine)
-session = Session()
-
+db = SQLAlchemy()
 
 app = Flask(__name__)
 app.debug = True
 app.config['SECRET_KEY'] = os.urandom(12)
-app.config["SQLALCHEMY_DATABASE_URI"] = engine
-Base.metadata.create_all(engine)
+app.config["SQLALCHEMY_DATABASE_URI"] = DB_URI
 
-app.register_blueprint(main_blueprint)
-app.register_blueprint(contacts_blueprint)
+db.init_app(app)
 
 
 from project.routes import *

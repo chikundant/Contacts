@@ -1,11 +1,10 @@
 from flask_login import UserMixin
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
+from project import db
 
-Base = declarative_base()
 
-
-class Contact(UserMixin, Base):
+class Contact(UserMixin, db.Model):
     __tablename__ = 'contacts'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -14,3 +13,6 @@ class Contact(UserMixin, Base):
     email = Column(String(50))
     number = Column(String(50), unique=True)
     notice = Column(String(200))
+
+    def __repr__(self):
+        return '<Contact {}>'.format(self.id)
