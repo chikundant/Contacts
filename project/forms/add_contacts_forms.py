@@ -11,6 +11,7 @@ class AddContactForm(FlaskForm):
     number = StringField('Phone number', validators=[InputRequired()])
     notice = TextAreaField('Notice')
     submit = SubmitField('Save')
+
     def validate_number(self, number):
         contact = Contact.query.filter_by(number=str(number.data)).first()
         if contact is not None:
@@ -19,9 +20,9 @@ class AddContactForm(FlaskForm):
 
 class SearchContactForm(FlaskForm):
     inpt = StringField()
-    submit = SubmitField('Find')
     search = SelectField('Search by', choices=[
         'name',
         'surname',
         'email',
         'number'])
+    submit = SubmitField('Find')

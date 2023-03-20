@@ -33,13 +33,29 @@ def delete_contact(id):
     return redirect(url_for('find_contacts'))
 
 
-@app.route('/find_contacts/')
-@app.route('/find_contacts/<int:page>')
+@app.route('/find_contacts/', methods=['GET', 'POST'])
+@app.route('/find_contacts/<int:page>', methods=['GET', 'POST'])
 def find_contacts(page=1):
     contacts = Contact.query.order_by(Contact.id.desc()).paginate(page=page, per_page=USERS_PER_PAGE, error_out=False)
     form = SearchContactForm()
-    if form.validate_on_submit():
-        pass
+    search = '%{}%'
+    if form.is_submitted():
+        if form.search.data == 'name':
+            contacts = Contact.query.filter(Contact.name.like(search.format(form.inpt.data))).paginate(page=page,
+                                                                                            per_page=USERS_PER_PAGE,
+                                                                                            error_out=False)
+        elif form.search.data == 'surname':
+            contacts = Contact.query.filter(Contact.surname.like(search.format(form.inpt.data))).paginate(page=page,
+                                                                                            per_page=USERS_PER_PAGE,
+                                                                                            error_out=False)
+        elif form.search.data == 'email':
+            contacts = Contact.query.filter(Contact.email.like(search.format(form.inpt.data))).paginate(page=page,
+                                                                                            per_page=USERS_PER_PAGE,
+                                                                                            error_out=False)
+        elif form.search.data == 'number':
+            contacts = Contact.query.filter(Contact.number.like(search.format(form.inpt.data))).paginate(page=page,
+                                                                                            per_page=USERS_PER_PAGE,
+                                                                                            error_out=False)
 
     return render_template('find_contact.html', contacts=contacts, form=form)
 

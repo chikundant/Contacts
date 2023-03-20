@@ -10,7 +10,7 @@
 <div class="flex">
     {% include '_tools.html'%}
     <aside class="w-2/3 bg-gray-600 h-screen p-8 flex flex-col space-y-5">
-        <form action="" class="w-full bg-gray-700 h-22 p-8 rounded-3xl container flex flex-wrap space-x-5 items-center justify-center">
+        <form action="" class="w-full bg-gray-700 h-22 p-8 rounded-3xl container flex flex-wrap space-x-5 items-center justify-center", method="POST">
             {{ form.csrf_token }}
             <p class="">
                 {{ form.search(class='rounded-3xl bg-gray-300 h-9 px-4 text-black shadow-innerfocus:outline-none focus:ring ring-gray-400')}}
@@ -22,6 +22,7 @@
                 {{ form.submit(class='block px-8 py-2.5 bg-gray-400 rounded-3xl cursor-pointer hover:bg-gray-500 active:bg-gray-600')}}
             </p>
         </form>
+
         {% for contact in contacts%}
             {% include '_contact.html' %}
         {% endfor %}
