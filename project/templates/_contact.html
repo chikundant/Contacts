@@ -1,5 +1,5 @@
-<div >
-    <a href="" class="grid w-full bg-gray-700 h-22 p-8 rounded-3xl hover:ring-2 ring-slate-500 active:ring-slate-700 cursor-pointer">
+<div>
+    <a href="{{url_for('contact', id=contact.id)}}" class="grid w-full bg-gray-700 h-22 p-8 rounded-3xl hover:ring-2 ring-slate-500 active:ring-slate-700 cursor-pointer">
         <ul class="inline-grid grid-cols-4 f-full">
             <li>{{contact.name}}</li>
             <li>{{contact.surname}}</li>
@@ -8,5 +8,7 @@
         </ul>
         <p>{{contact.notice}}</p>
     </a>
-    <a href="{{url_for('delete_contact', id=contact.id)}}" class="w-full block text-right text-red-500 pr-6">delete</a>
+    <div class="w-full block text-right">
+        <a href="{{url_for('delete_contact', id=contact.id)}}" class=" text-red-500 pr-6">delete</a>
+    </div>
 </div>

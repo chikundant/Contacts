@@ -60,6 +60,29 @@ def find_contacts(page=1):
     return render_template('find_contact.html', contacts=contacts, form=form)
 
 
+@app.route('/contact/<int:id>', methods=['GET', 'POST'])
+def contact(id):
+    contact = Contact.query.filter_by(id=id).first()
+    form = AddContactForm()
+
+    if form.is_submitted():
+        contact.name = form.name.data
+        contact.surname = form.surname.data
+        contact.email = form.email.data
+        contact.number = str(form.number.data)
+        contact.notice = form.notice.data
+        db.session.commit()
+        return redirect(url_for('find_contacts'))
+
+    form.name.data = contact.name
+    form.surname.data = contact.surname
+    form.email.data = contact.email
+    form.number.data = contact.number
+    form.notice.data = contact.notice
+
+    return render_template('contact.html', form=form, contact=contact)
+
+
 @app.route('/')
 def index():
     return render_template('index.html')

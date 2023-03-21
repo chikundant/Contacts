@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+{% include 'header.html' %}
+
+{% endblock %}
+
+{% block content %}
+<div class="flex">
+    {% include '_tools.html' %}
+    <aside class="w-2/3 bg-gray-600 h-screen p-8 flex flex-col ">
+        <div>
+            <div href="" class="grid w-full bg-gray-700 h-22 p-8 rounded-3xl">
+                <ul class="inline-grid grid-cols-4 f-full">
+                    <li>{{contact.name}}</li>
+                    <li>{{contact.surname}}</li>
+                    <li>{{contact.email}}</li>
+                    <li>{{contact.number}}</li>
+                </ul>
+                <p>{{contact.notice}}</p>
+            </div>
+            <div class="w-full block text-right">
+                <a href="{{url_for('delete_contact', id=contact.id)}}" class=" text-red-500 pr-6">delete</a>
+            </div>
+        </div>
+        <form action="" class=" bg-gray-700 rounded-3xl p-12 drop-shadow-2xl" method="POST">
+            {{ form.csrf_token }}
+            <div class="container flex flex-wrap items-center justify-between w-full">
+                <p class="grid">
+                    {{form.name.label}}
+                    {{form.name(class='rounded-3xl bg-gray-300 h-9 px-4 text-black shadow-inner mt-2 focus:outline-none
+                    focus:ring ring-gray-400')}}
+                </p>
+                <p class="grid">
+                    {{form.surname.label}}
+                    {{form.surname(class='rounded-3xl bg-gray-300 h-9 px-4 text-black shadow-inner mt-2
+                    focus:outline-none focus:ring ring-gray-400')}}
+                </p>
+                <p class="grid">
+                    {{form.email.label}}
+                    {{form.email(class='rounded-3xl bg-gray-300 h-9 px-4 text-black shadow-inner mt-2 focus:outline-none
+                    focus:ring ring-gray-400')}}
+                </p>
+                <p class="grid">
+                    {{form.number.label}}
+                    {{form.number(class='rounded-3xl bg-gray-300 h-9 px-4 text-black shadow-inner mt-2
+                    focus:outline-none focus:ring ring-gray-400')}}
+                </p>
+            </div>
+            <div class="my-4">
+                <p class="grid">
+                    {{form.notice.label}}
+                    {{form.notice(class='rounded-3xl h-24 bg-gray-300 h-32 p-6 text-black shadow-inner mt-2
+                    focus:outline-none focus:ring ring-gray-400')}}
+                </p>
+            </div>
+            {{form.submit(class='block px-8 py-2.5 mt-6 bg-gray-400 rounded-3xl cursor-pointer hover:bg-gray-500
+            active:bg-gray-600')}}
+        </form>
+    </aside>
+</div>
+{% endblock %}
